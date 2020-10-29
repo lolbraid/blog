@@ -11203,3 +11203,9 @@ body{
 .dropdown-menu .dropdown-item{
   text-align: right;
 }
+
+
+.sh {
+  box-shadow: 7px 7px 18px 5px rgba(110, 50, 50, 0.96);
+}
+

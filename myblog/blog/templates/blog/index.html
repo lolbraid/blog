@@ -7,8 +7,9 @@
             </div>
         {% endfor %}
     {% endif %}
+    
     {% for post in posts %}
-        <div class="border p-3 mb-3">
+        <div class="at-item border p-3 mb-3 sh">
             <img class="img-fluid rounded-circle border m-2" style="width: 70px; height:70px;"
                 src="{{post.author.profile.image.url}}" alt="صورة الناشر">
             <span class="text-secondary">نشر في {{post.post_date|date:'d-m-Y'}}</span>

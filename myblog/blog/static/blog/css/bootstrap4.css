@@ -9266,3 +9266,12 @@ body {
 .back-btn{
   float: left;
 }
+
+body {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background: #222;
+}
+
