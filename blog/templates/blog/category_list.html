@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+
+<h1>التصنيفات</h1>
+
+{% for item in cat_menu_list %}
+    {% if url.is_vaild %}
+        <a class="dropdown-item" href="{% url 'category' post.category|slugify %}">
+            {{ item }}
+        </a>
+    {% else %}
+        <a class="dropdown-item" href="{% url 'category' item %}">
+            {{ item }}
+        </a>
+    {% endif %}
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+    {% if user.is_superuser %}
+        <h1> اضافة تصنيف </h1>
+        <div class="form-group">
+            <form  method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button>
+                    اضافة
+                </button>
+            </form>
+        </div>
+    {% else %}
+        <h1>ممنوع</h1>
+    {% endif %}
+
+{% endblock %}

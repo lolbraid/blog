@@ -1,0 +1,31 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+{% if category_posts %}
+    <h1>
+        {{ cats }}
+    </h1>
+    {% for post in category_posts %}
+    <h1>
+        <a href="{% url 'detail' post.pk %}">
+            {{ post.title }}
+        </a>
+    </h1>
+    <li>
+        {{ post.author }} - 
+        {% if user.is_authenticated %}
+            <a href="{% url 'post-update' post.pk %}">
+                تعديل
+            </a>
+            <a href="{% url 'post-delete' post.pk %}">
+                حذف
+            </a>
+            {% endif %}
+    </li>
+    <p>
+        {{ post.body|slice:":200"|safe }}
+    </p>
+    {% endfor %}
+{% else %}
+    {% include 'blog/error.html' %}
+{% endif %}
+{% endblock %}
