@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from django.urls import reverse
 from ckeditor.fields import RichTextField
-
+# from user.urls import lts
 
 class Category(models.Model):
     name = models.CharField(max_length=255, null=True)
@@ -21,7 +21,7 @@ class Post(models.Model):
     content = RichTextField(blank=True, null=True, verbose_name='المحتوى')
     help_img = models.ImageField(null=True, blank=True, upload_to = 'posts_header/', verbose_name='الصورة')
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='الكاتب')
-    category = models.CharField(max_length=255, verbose_name='التصنيف')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='التصنيف')
     post_date = models.DateTimeField(default=timezone.now)
     post_update = models.DateTimeField(auto_now=True)
     likes = models.ManyToManyField(User, related_name='blog_posts', verbose_name='الاعجابات')

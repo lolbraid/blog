@@ -12,6 +12,7 @@ def lts(s):
     for ele in s:  
         str1 += ele   
     return str1
+
 slug = lts(p)
 slug = lts(up)
 
