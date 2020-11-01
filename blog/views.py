@@ -7,9 +7,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
 
-def error():
-    return render(request, 'blog\eror.html', {})
-
 def Like(request, pk):
     post = get_object_or_404(Post, id=request.POST.get('post_id'))
     liked = False
@@ -42,11 +39,13 @@ def CategoryList(request):
 
 def category(request, cats):
     category_posts = Post.objects.filter(category=cats)
+    
     def get_context_data(self, *args, **kwargs):
         cat_menu = Category.objects.all()
         context = super(category, self).get_context_data(*args, **kwargs)
         context["cat_menu"] = cat_menu
         return context
+    
     context = {
         'cats':cats.title(),
         'category_posts':category_posts,
@@ -56,6 +55,13 @@ def category(request, cats):
 
 def home(request):
     posts = Post.objects.all()
+    search = None
+    if 'search' in request.GET:
+        search = request.GET['search']
+        if search:
+            posts = posts.filter(title__icontains=search)
+        
+    cat_menu = Category.objects.all()
     paginator = Paginator(posts, 5)
     page = request.GET.get('page')
     try:
@@ -71,6 +77,8 @@ def home(request):
         'title': 'الصفحة الرئيسية',
         'posts': posts,
         'page': page,
+        'search': search,
+        'cat_menu': cat_menu,
     }
     return render(request, 'blog/index.html', context)
 

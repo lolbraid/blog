@@ -1,0 +1,15 @@
+<ul class="card card-primary">
+    {% for comment in l_comments %}
+        <li class="card-body">
+            <a class="text-light" href="{% url 'detail' comment.post.id %}">
+                {% if comment.body|length > 40 %}
+                    {{comment.body|slice:'45'}} ..
+                {% else %}
+                    {{comment.body}}
+                {% endif %}
+            </a>
+        </li>
+    {% empty %}
+        <li class="list-group-item latest-comment-item">لا يوجد تعليقات</li>
+    {% endfor %}
+</ul>

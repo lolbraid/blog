@@ -3,6 +3,8 @@ from .models import Post, Comment, Category
 from import_export.admin import ImportExportModelAdmin
 
 @admin.register(Post)
+class PostImportExportModelAdmin(ImportExportModelAdmin):
+    pass
 class PostAdmin(admin.ModelAdmin):
     list_display = ['title', 'content', 'help_img', 'author', 'category', 'post_date', 'post_update']
     search_fields = ['title', 'content', 'help_img', 'author', 'category', 'post_date', 'post_update']
